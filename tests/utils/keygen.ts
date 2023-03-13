@@ -2,7 +2,7 @@ import fs from "fs";
 
 import { Bridge } from "@buildwithsygma/sygma-contracts";
 import { ec } from "elliptic";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { parse } from "lossless-json";
 
 export type Keyshare = {
@@ -21,9 +21,9 @@ const KEYSHARE_LOCATION = "./cfg/relayer/keyshares/0.keyshare";
  * @param bridge bridge contract instance
  * @returns MPC address
  */
-// export async function executeKeygen(bridge: Bridge): Promise<string> {
 export async function executeKeygen(bridge: Bridge): Promise<string> {
-  await bridge.startKeygen();
+  const tx = await bridge.startKeygen();
+  await tx.wait();
   return await getMPCAddress();
 }
 
@@ -60,17 +60,21 @@ function computeAddress(keyshare: Keyshare): string {
   const curve = new ec("secp256k1");
   const kp = curve.keyFromPublic(
     {
-      x: ethers
-        .toBigInt((keyshare.Key.ECDSAPub.Coords as Array<string>)[0].toString())
+      x: BigNumber.from(
+        (keyshare.Key.ECDSAPub.Coords as Array<string>)[0].toString()
+      )
+        .toBigInt()
         .toString(16),
-      y: ethers
-        .toBigInt((keyshare.Key.ECDSAPub.Coords as Array<string>)[1].toString())
+      y: BigNumber.from(
+        (keyshare.Key.ECDSAPub.Coords as Array<string>)[1].toString()
+      )
+        .toBigInt()
         .toString(16),
     },
     "hex"
   );
 
-  return ethers.computeAddress(
+  return ethers.utils.computeAddress(
     "0x" + kp.getPublic().encodeCompressed("hex").toString()
   );
 }

@@ -28,4 +28,4 @@ export const BRIDGE_CONFIG: SygmaBridgeSetupList = [
 ];
 
 export const EVM_ADMIN_KEY =
-  "cc2c32b154490f09f70c1c8d4b997238448d649e0777495863db231c4ced3616";
+  "4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d";
