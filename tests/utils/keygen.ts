@@ -28,6 +28,19 @@ export async function executeKeygen(bridge: Bridge): Promise<string> {
 }
 
 /**
+ * Sets MPC address on chain after keygen.
+ *
+ * @param bridge bridge contract instance
+ */
+export async function setMPCAddress(
+  bridge: Bridge,
+  address: string
+): Promise<void> {
+  const tx = await bridge.endKeygen(address);
+  await tx.wait();
+}
+
+/**
  *
  * @param address MPC address
  * @param bridge bridge contract instance

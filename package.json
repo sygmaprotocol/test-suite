@@ -10,7 +10,7 @@
     "lint": "yarn run lint:style && yarn run lint:types",
     "lint:style": "eslint --color --ext .ts src/ test/",
     "lint:types": "tsc --noEmit --pretty",
-    "test": "yarn run test:unit"
+    "test": "ts-mocha --timeout 200000000 --require tests/init.ts \"tests/**/*.spec.ts\""
   },
   "devDependencies": {
     "@buildwithsygma/sygma-contracts": "^2.2.1",
