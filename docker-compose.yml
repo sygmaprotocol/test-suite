@@ -31,7 +31,7 @@ services:
       - "9933:9933"
 
   relayer1:
-    image: ghcr.io/sygmaprotocol/sygma-relayer:latest"
+    image: "ghcr.io/sygmaprotocol/sygma-relayer:latest"
     command: "run --config /cfg/relayer/configs/config_evm-evm_1.json --fresh"
     container_name: relayer1
     depends_on:
@@ -42,7 +42,7 @@ services:
     restart: always
 
   relayer2:
-    image: ghcr.io/sygmaprotocol/sygma-relayer:latest"
+    image: "ghcr.io/sygmaprotocol/sygma-relayer:latest"
     command: "run --config /cfg/relayer/configs/config_evm-evm_2.json --fresh"
     container_name: relayer2
     depends_on:
@@ -53,7 +53,7 @@ services:
     restart: always
 
   relayer3:
-    image: ghcr.io/sygmaprotocol/sygma-relayer:latest"
+    image: "ghcr.io/sygmaprotocol/sygma-relayer:latest"
     command: "run --config /cfg/relayer/configs/config_evm-evm_3.json --fresh"
     container_name: relayer3
     depends_on:
