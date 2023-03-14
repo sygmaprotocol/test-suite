@@ -1,6 +1,6 @@
-import { executeKeygen } from "../tools/evm/keygen";
-import { setupEVMChain } from "../tools/evm/setup";
-import { setupSubstrateChain } from "../tools/substrate/setup";
+import { executeKeygen } from "../src/tools/evm/keygen";
+import { setupEVMChain } from "../src/tools/evm/setup";
+import { setupSubstrateChain } from "../src/tools/substrate/setup";
 
 import { BRIDGE_CONFIG } from "./consts";
 

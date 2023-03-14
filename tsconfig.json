@@ -14,7 +14,8 @@
     "typeRoots": [
       "./node_modules/@types",
       "./@types"
-    ]
+    ],
+    "skipLibCheck": true
   },
   "ts-node": {
     "transpileOnly": true,
@@ -22,6 +23,7 @@
   },
   "include": [
     "tests/**/*.ts",
+    "src/**/*.ts",
   ],
   "exclude": [
     "node_modules"
