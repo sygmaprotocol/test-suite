@@ -1,23 +1,15 @@
-import { getBridgeContract } from "../tools/evm/contract";
-import { getProvider, getSigner } from "../tools/evm/signer";
+import { executeKeygen } from "../tools/evm/keygen";
+import { setupEVMChain } from "../tools/evm/setup";
 
-import { BRIDGE_CONFIG, EVM_ADMIN_KEY } from "./consts";
-import { executeKeygen, setMPCAddress } from "./utils/keygen";
+import { BRIDGE_CONFIG } from "./consts";
 
 export const mochaHooks = {
   beforeAll: [
     async function (): Promise<void> {
-      const keygenDomain = BRIDGE_CONFIG[0];
-      const provider = getProvider(keygenDomain.rpcUrl, undefined);
-      const signer = getSigner(EVM_ADMIN_KEY, provider);
-      const bridge = getBridgeContract(keygenDomain.bridgeAddress, signer);
-      const mpcAddress = executeKeygen(bridge);
+      const mpcAddress = await executeKeygen(BRIDGE_CONFIG[0]);
 
       for (const domain of BRIDGE_CONFIG) {
-        const provider = getProvider(domain.rpcUrl, undefined);
-        const signer = getSigner(EVM_ADMIN_KEY, provider);
-        const bridge = getBridgeContract(domain.bridgeAddress, signer);
-        await setMPCAddress(bridge, mpcAddress);
+        setupEVMChain(domain, mpcAddress);
       }
     },
   ],
