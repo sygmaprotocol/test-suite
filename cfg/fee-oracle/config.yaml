@@ -5,14 +5,14 @@
 app_mode: release
 
 # env
-env: dev # dev, production
+env: production # dev, production
 
 # Log level
 log_level: 5  # 5 is debug level, use 4(info) in prod
 
 # Gin http server config
 http_server:
-  mode: debug # or release, debug
+  mode: release # or release, debug
   port: :8091
 
 # time in second before server shutdown
@@ -39,27 +39,22 @@ store:
 oracle:
   etherscan:
     enable: true
-    api_key: 473P55YZMBNSRR63YF78D2PMMIUYUQJMGY
+    api_key: MJBQGX56TP5DN3DX1IZ3U563VAZEKNY875
     apis:
       gas_price: https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=
-  polygonscan:
-    enable: true
-    api_key: BZM7P395BQS1YFKQMA2AK2ACQKWGEW4JB3
-    apis:
-      gas_price: https://api.polygonscan.com/api?module=gastracker&action=gasoracle&apikey=
   coinmarketcap:
     enable: true
-    api_key: 1408daf0-0777-4916-9fe4-20da5ee77560
+    api_key: 71e66f46-c016-441b-bb6a-d532b00acb0b
     apis:
       query_rate: https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?
 
 gas_price_domains:
-  [ ethereum, polygon ]
+  [ ethereum ]
 
 # conversion_rate_pairs contains price pair for conversion rate
 # must be paired and follow the format of [ base, foreign, base, foreign, ... ]
 conversion_rate_pairs:
-  [ eth, usdt, eth, matic, matic, usdt ]
+  [ eth, usdt ]
 
 # strategy defines the strategy on verify and aggregate data from store when fetched
 strategy:
