@@ -3,6 +3,9 @@ name: Test
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  schedule:
+    # nightly build at 8PM
+    - cron:  '0 20 * * *'
 
 jobs:
   test:
