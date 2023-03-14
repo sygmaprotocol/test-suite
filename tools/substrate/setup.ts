@@ -17,4 +17,5 @@ export async function setupSubstrateChain(
   const keyring = new Keyring({ type: "sr25519" });
   const sudo = keyring.addFromUri("//Alice");
   await setMpcAddress(api, sudo, mpcAddress);
+  await api.disconnect();
 }

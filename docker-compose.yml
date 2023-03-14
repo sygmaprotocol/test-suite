@@ -65,7 +65,7 @@ services:
 
   fee-oracle:
     container_name: fee-oracle
-    image: "ghcr.io/sygmaprotocol/sygma-fee-oracle:v1.1.1"
+    image: "ghcr.io/sygmaprotocol/sygma-fee-oracle:latest"
     command: go run main.go server -c ./fee-oracle-config/config.yaml -d ./fee-oracle-config/domain.json
     depends_on:
       - evm1-1

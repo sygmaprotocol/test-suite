@@ -6,8 +6,19 @@ export async function setMpcAddress(
   sudo: KeyringPair,
   mpcAddr: string
 ): Promise<void> {
-  const nonce = Number((await api.query.system.account(sudo.address))["nonce"]);
-  await api.tx.sudo
-    .sudo(api.tx.sygmaBridge.setMpcAddress(mpcAddr))
-    .signAndSend(sudo, { nonce: nonce, era: 0 });
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const nonce = Number((await api.query.system.account(sudo.address)).nonce);
+  return new Promise((resolve, reject) => {
+    api.tx.sudo
+      .sudo(api.tx.sygmaBridge.setMpcAddress(mpcAddr))
+      .signAndSend(sudo, { nonce: nonce, era: 0 }, (result) => {
+        if (result.isError || result.dispatchError) {
+          reject(result.dispatchError);
+        }
+        if (result.status.isFinalized) {
+          resolve();
+        }
+      });
+  });
 }
