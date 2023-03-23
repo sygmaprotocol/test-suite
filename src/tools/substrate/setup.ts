@@ -13,7 +13,8 @@ export async function setupSubstrateChain(
     provider: sygmaPalletProvider,
   });
 
-  await cryptoWaitReady();
+  console.log("Setting up substrate chain ", domain.domainId);
+
   const keyring = new Keyring({ type: "sr25519" });
   const sudo = keyring.addFromUri("//Alice");
   await setMpcAddress(api, sudo, mpcAddress);
