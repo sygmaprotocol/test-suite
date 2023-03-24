@@ -13,7 +13,5 @@ export async function setupEVMChain(
   const signer = getSigner(ADMIN_KEY, provider);
   const bridge = getBridgeContract(domain.bridgeAddress, signer);
 
-  console.log("Setting up EVM chain ", domain.domainId);
-
   await setMPCAddress(bridge, mpcAddress);
 }

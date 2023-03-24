@@ -12,8 +12,7 @@ export async function setupSubstrateChain(
   const api = await ApiPromise.create({
     provider: sygmaPalletProvider,
   });
-
-  console.log("Setting up substrate chain ", domain.domainId);
+  await cryptoWaitReady();
 
   const keyring = new Keyring({ type: "sr25519" });
   const sudo = keyring.addFromUri("//Alice");
