@@ -1,6 +1,6 @@
-import { SygmaBridgeSetupList } from "@buildwithsygma/sygma-sdk-core";
+import { EvmBridgeSetupList } from "@buildwithsygma/sygma-sdk-core";
 
-export const BRIDGE_CONFIG: SygmaBridgeSetupList = [
+export const BRIDGE_CONFIG: EvmBridgeSetupList = [
   {
     domainId: "1",
     networkId: 1337,
@@ -10,6 +10,7 @@ export const BRIDGE_CONFIG: SygmaBridgeSetupList = [
     erc20HandlerAddress: "0xD833215cBcc3f914bD1C9ece3EE7BF8B14f841bb",
     erc721HandlerAddress: "0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7",
     rpcUrl: "http://localhost:8545",
+    type: "Ethereum",
     tokens: [
       {
         type: "erc20",
@@ -106,6 +107,7 @@ export const BRIDGE_CONFIG: SygmaBridgeSetupList = [
     erc20HandlerAddress: "0xD833215cBcc3f914bD1C9ece3EE7BF8B14f841bb",
     erc721HandlerAddress: "0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7",
     rpcUrl: "http://localhost:8547",
+    type: "Ethereum",
     tokens: [
       {
         type: "erc20",
@@ -189,30 +191,6 @@ export const BRIDGE_CONFIG: SygmaBridgeSetupList = [
         feeSettings: {
           type: "feeOracle",
           address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
-        },
-      },
-    ],
-  },
-  {
-    domainId: "3",
-    networkId: 1338,
-    name: "substrate",
-    decimals: 18,
-    bridgeAddress: "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
-    erc20HandlerAddress: "0x1ED1d77911944622FCcDDEad8A731fd77E94173e",
-    erc721HandlerAddress: "0x481f97f9C82a971B3844a422936a4d3c4082bF84",
-    rpcUrl: "ws://localhost:9944",
-    tokens: [
-      {
-        type: "erc20",
-        address: "0x1CcB4231f2ff299E1E049De76F0a1D2B415C563A",
-        name: "ERC20LRTST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000300",
-        feeSettings: {
-          type: "basic",
-          address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
         },
       },
     ],

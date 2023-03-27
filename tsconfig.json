@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "CommonJS",
     "sourceMap": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -19,7 +19,9 @@
   },
   "ts-node": {
     "transpileOnly": true,
-    "files": true
+    "files": true,
+    "experimentalSpecifierResolution": "node",
+    "esm": true
   },
   "include": [
     "tests/**/*.ts",
