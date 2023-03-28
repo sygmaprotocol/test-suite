@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    # nightly build at 8PM
+    - cron:  '0 20 * * *'
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.4.0
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Run docker
+        run: docker-compose up -d
+      - name: Run migrations
+        run: make migrate
+      - name: Run tests
+        run: yarn run test

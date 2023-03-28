@@ -1,0 +1,79 @@
+# Copyright 2020 ChainSafe Systems
+# SPDX-License-Identifier: LGPL-3.0-only
+version: '3'
+
+services:
+  evm1-1:
+    image: trufflesuite/ganache-cli
+    container_name: evm1-1
+    command: ganache-cli --chainId 1337 -d --db data/ --blockTime 2 > /dev/null
+    logging:
+      driver: none
+    ports:
+      - "8545:8545"
+
+  # SECOND CHAIN
+  evm2-1:
+    image: trufflesuite/ganache-cli
+    command: ganache-cli --chainId 1338 -d --db data/ --blockTime 2 > /dev/null
+    container_name: evm2-1
+    logging:
+      driver: none
+    ports:
+      - "8547:8545"
+
+  substrate-pallet:
+    container_name: substrate-pallet
+    image: "ghcr.io/sygmaprotocol/sygma-substrate-pallets:latest"
+    command: "--dev --ws-external --unsafe-ws-external --base-path ./db/"
+    ports:
+      - "9944:9944"
+      - "9933:9933"
+
+  relayer1:
+    image: "ghcr.io/sygmaprotocol/sygma-relayer:latest"
+    command: "run --config /cfg/relayer/configs/config_evm-evm_1.json --fresh"
+    container_name: relayer1
+    depends_on:
+      - evm1-1
+      - substrate-pallet
+    volumes:
+      - ./cfg:/cfg
+    restart: always
+
+  relayer2:
+    image: "ghcr.io/sygmaprotocol/sygma-relayer:latest"
+    command: "run --config /cfg/relayer/configs/config_evm-evm_2.json --fresh"
+    container_name: relayer2
+    depends_on:
+      - evm1-1
+      - substrate-pallet
+    volumes:
+      - ./cfg:/cfg
+    restart: always
+
+  relayer3:
+    image: "ghcr.io/sygmaprotocol/sygma-relayer:latest"
+    command: "run --config /cfg/relayer/configs/config_evm-evm_3.json --fresh"
+    container_name: relayer3
+    depends_on:
+      - evm1-1
+      - substrate-pallet
+    volumes:
+      - ./cfg:/cfg
+    restart: always
+
+  fee-oracle:
+    container_name: fee-oracle
+    image: "ghcr.io/sygmaprotocol/sygma-fee-oracle:latest"
+    command: go run main.go server -c ./fee-oracle-config/config.yaml -d ./fee-oracle-config/domain.json
+    depends_on:
+      - evm1-1
+      - substrate-pallet
+    volumes:
+      - ./cfg/fee-oracle:/app/feeOracle/fee-oracle-config/
+    ports:
+      - "8091:8091"
+    environment:
+      - IDENTITY_KEY=71aec985a12cfcbabc7969845215ceac56038e87477c8337e373eab7b15796cf
+      - IDENTITY_KEY_TYPE=secp256k1

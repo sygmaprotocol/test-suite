@@ -1,0 +1,50 @@
+{
+  "domains": [
+    {
+      "id": 1,
+      "name": "ethereum",
+      "nativeTokenDecimals": 18,
+      "nativeTokenSymbol": "eth",
+      "resources": [
+        {
+          "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "decimals": 18,
+          "symbol": "usdt"
+        },
+        {
+          "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000700",
+          "decimals": 14,
+          "symbol": "usdt"
+        },
+        {
+          "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000900",
+          "decimals": 20,
+          "symbol": "usdt"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ethereum",
+      "nativeTokenDecimals": 18,
+      "nativeTokenSymbol": "eth",
+      "resources": [
+        {
+          "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "decimals": 18,
+          "symbol": "usdt"
+        },
+        {
+          "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000700",
+          "decimals": 14,
+          "symbol": "usdt"
+        },
+        {
+          "resourceId": "0x0000000000000000000000000000000000000000000000000000000000000900",
+          "decimals": 20,
+          "symbol": "usdt"
+        }
+      ]
+    }
+  ]
+}
