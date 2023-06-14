@@ -14,8 +14,6 @@
     "test": "ts-mocha --exit --timeout 600000 --require tests/init.ts \"tests/**/*.spec.ts\""
   },
   "devDependencies": {
-    "@buildwithsygma/sygma-contracts": "^2.2.1",
-    "@buildwithsygma/sygma-sdk-core": "^2.0.0",
     "@types/chai": "^4.2.14",
     "@types/elliptic": "^6.4.14",
     "@types/mocha": "^8.2.0",
@@ -24,13 +22,10 @@
     "@typescript-eslint/parser": "^4.14.0",
     "chai": "^4.2.0",
     "cjs": "^0.0.11",
-    "elliptic": "^6.5.4",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
-    "ethers": "^5.X",
-    "lossless-json": "^2.0.8",
     "mocha": "^8.2.1",
     "prettier": "^2.2.1",
     "supertest": "^6.1.1",
@@ -40,6 +35,11 @@
     "typescript-eslint-parser": "^22.0.0"
   },
   "dependencies": {
-    "@ethersproject/experimental": "^5.7.0"
+    "@buildwithsygma/sygma-contracts": "^2.2.1",
+    "@buildwithsygma/sygma-sdk-core": "^2.0.0",
+    "@ethersproject/experimental": "^5.7.0",
+    "lossless-json": "^2.0.8",
+    "ethers": "^5.X",
+    "elliptic": "^6.5.4"
   }
 }
