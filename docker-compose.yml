@@ -6,7 +6,7 @@ services:
   evm1-1:
     image: trufflesuite/ganache-cli
     container_name: evm1-1
-    command: ganache-cli --chainId 1337 -d --db data/ --blockTime 2 > /dev/null
+    command: ganache-cli --chainId 1337 -d --db data/ --mnemonic 'black toward wish jar twin produce remember fluid always confirm bacon slush' --blockTime 2 > /dev/null
     logging:
       driver: none
     ports:
@@ -15,7 +15,7 @@ services:
   # SECOND CHAIN
   evm2-1:
     image: trufflesuite/ganache-cli
-    command: ganache-cli --chainId 1338 -d --db data/ --blockTime 2 > /dev/null
+    command: ganache-cli --chainId 1338 -d --db data/ --mnemonic 'black toward wish jar twin produce remember fluid always confirm bacon slush' --blockTime 2 > /dev/null
     container_name: evm2-1
     logging:
       driver: none

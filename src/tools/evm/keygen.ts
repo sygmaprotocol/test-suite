@@ -1,7 +1,6 @@
 import fs from "fs";
 
 import { Bridge } from "@buildwithsygma/sygma-contracts";
-import { EvmBridgeSetup } from "@buildwithsygma/sygma-sdk-core";
 import { ec } from "elliptic";
 import { BigNumber, ethers } from "ethers";
 import { parse } from "lossless-json";
@@ -26,10 +25,10 @@ const KEYSHARE_LOCATION = "./cfg/relayer/keyshares/0.keyshare";
  * @param bridge bridge contract instance
  * @returns MPC address
  */
-export async function executeKeygen(domain: EvmBridgeSetup): Promise<string> {
-  const provider = getProvider(domain.rpcUrl, undefined);
+export async function executeKeygen(domain: EvmBridgeSetup, rpcUrl: string): Promise<string> {
+  const provider = getProvider(rpcUrl, undefined);
   const signer = getSigner(ADMIN_KEY, provider);
-  const bridge = getBridgeContract(domain.bridgeAddress, signer);
+  const bridge = getBridgeContract(domain.bridge, signer);
 
   const tx = await bridge.startKeygen();
   await tx.wait();
