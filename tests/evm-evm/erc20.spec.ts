@@ -48,10 +48,10 @@ describe("EVM-EVM ERC20", function () {
     destinationAssetTransfer.config.environment = BRIDGE_CONFIG;
 
     const resources = assetTransfer.config.getDomainResources();
-    erc20LR18 = resources.find((res) => res.symbol == "ERC20LR18") as Resource;
+    erc20LR18 = resources.find((res) => res.resourceId == "0x0000000000000000000000000000000000000000000000000000000000000300") as Resource;
 
     const destinationResources = destinationAssetTransfer.config.getDomainResources();
-    const destErc20LR18 = destinationResources.find((res) => res.symbol == "ERC20LR18") as Resource;
+    const destErc20LR18 = destinationResources.find((res) => res.resourceId == "0x0000000000000000000000000000000000000000000000000000000000000300") as Resource;
 
     sourceErc20LR18Contract = new ERC20PresetMinterPauser__factory(adminWallet).attach((erc20LR18 as EvmResource).address);
     await sourceErc20LR18Contract.mint(await wallet.getAddress(), "10000")

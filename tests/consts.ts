@@ -56,23 +56,24 @@ export const BRIDGE_CONFIG: RawConfig = {
         {
           type: ResourceType.FUNGIBLE,
           address: "0x8f5b7716a0A5f94Ea10590F9070442f285a31116",
-          decimals: 14,
+          decimals: 20,
           resourceId:
             "0x0000000000000000000000000000000000000000000000000000000000000700",
         },
         {
-          type: ResourceType.FUNGIBLE,
+          type: ResourceType.NON_FUNGIBLE,
           address: "0xb61bd8740F60e0Bfc1b5C3fA2Bb9810e4AEf8938",
-          decimals: 20,
-          resourceId:
-            "0x0000000000000000000000000000000000000000000000000000000000000800",
+          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000200"
         },
         {
-          type: ResourceType.FUNGIBLE,
+          type: ResourceType.PERMISSIONED_GENERIC,
           address: "0xF956Ba663bd563f585e00D5973E06b443E5C4D65",
-          decimals: 20,
-          resourceId:
-            "0x0000000000000000000000000000000000000000000000000000000000000900",
+          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000100"
+        },
+        {
+          type: ResourceType.PERMISSIONLESS_GENERIC,
+          address: "0x156fA85e1df5d69B0F138dcEbAa5a14ca640FaED",
+          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000500"
         }
       ],
     },
@@ -121,28 +122,29 @@ export const BRIDGE_CONFIG: RawConfig = {
           address: "0x318C18708CCA8f1f73C17997b29f9a073702c52c",
           decimals: 14,
           resourceId:
-            "0x0000000000000000000000000000000000000000000000000000000000000600",
-        },
-        {
-          type: ResourceType.FUNGIBLE,
-          address: "0x8f5b7716a0A5f94Ea10590F9070442f285a31116",
-          decimals: 14,
-          resourceId:
             "0x0000000000000000000000000000000000000000000000000000000000000700",
         },
         {
           type: ResourceType.FUNGIBLE,
-          address: "0xb61bd8740F60e0Bfc1b5C3fA2Bb9810e4AEf8938",
+          address: "0x8f5b7716a0A5f94Ea10590F9070442f285a31116",
           decimals: 20,
           resourceId:
-            "0x0000000000000000000000000000000000000000000000000000000000000800",
+            "0x0000000000000000000000000000000000000000000000000000000000000600",
         },
         {
-          type: ResourceType.FUNGIBLE,
+          type: ResourceType.NON_FUNGIBLE,
+          address: "0xb61bd8740F60e0Bfc1b5C3fA2Bb9810e4AEf8938",
+          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000200"
+        },
+        {
+          type: ResourceType.PERMISSIONED_GENERIC,
           address: "0xF956Ba663bd563f585e00D5973E06b443E5C4D65",
-          decimals: 20,
-          resourceId:
-            "0x0000000000000000000000000000000000000000000000000000000000000900",
+          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000100"
+        },
+        {
+          type: ResourceType.PERMISSIONLESS_GENERIC,
+          address: "0x156fA85e1df5d69B0F138dcEbAa5a14ca640FaED",
+          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000500"
         }
       ],
     }
