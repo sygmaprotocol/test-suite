@@ -2,8 +2,8 @@ on: [pull_request, push]
 name: Linter check
 
 jobs:
-  lint-solidity:
-    name: Lint Solidity
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

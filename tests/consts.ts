@@ -1,9 +1,16 @@
-import { FeeHandlerType, Network, RawConfig, ResourceType } from "@buildwithsygma/sygma-sdk-core";
-
+import {
+  FeeHandlerType,
+  Network,
+  RawConfig,
+  ResourceType,
+} from "@buildwithsygma/sygma-sdk-core";
 
 export const EVM_1_RPC = "http://localhost:8545";
 export const EVM_2_RPC = "http://localhost:8547";
-export const RPCS: { [key: string]: string } = {"1": "http://localhost:8545", "2": "http://localhost:8547"}
+export const RPCS: { [key: string]: string } = {
+  "1": "http://localhost:8545",
+  "2": "http://localhost:8547",
+};
 export const BRIDGE_CONFIG: RawConfig = {
   domains: [
     {
@@ -19,12 +26,12 @@ export const BRIDGE_CONFIG: RawConfig = {
       feeHandlers: [
         {
           type: FeeHandlerType.BASIC,
-          address: "0x8dA96a8C2b2d3e5ae7e668d0C94393aa8D5D3B94"
+          address: "0x8dA96a8C2b2d3e5ae7e668d0C94393aa8D5D3B94",
         },
         {
           type: FeeHandlerType.DYNAMIC,
-          address: "0x30d704A60037DfE54e7e4D242Ea0cBC6125aE497"
-        }
+          address: "0x30d704A60037DfE54e7e4D242Ea0cBC6125aE497",
+        },
       ],
       startBlock: BigInt(1),
       blockConfirmations: 2,
@@ -63,18 +70,21 @@ export const BRIDGE_CONFIG: RawConfig = {
         {
           type: ResourceType.NON_FUNGIBLE,
           address: "0xb61bd8740F60e0Bfc1b5C3fA2Bb9810e4AEf8938",
-          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000200"
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000200",
         },
         {
           type: ResourceType.PERMISSIONED_GENERIC,
           address: "0xF956Ba663bd563f585e00D5973E06b443E5C4D65",
-          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000100"
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000100",
         },
         {
           type: ResourceType.PERMISSIONLESS_GENERIC,
           address: "0x156fA85e1df5d69B0F138dcEbAa5a14ca640FaED",
-          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000500"
-        }
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000500",
+        },
       ],
     },
     {
@@ -89,12 +99,12 @@ export const BRIDGE_CONFIG: RawConfig = {
       feeHandlers: [
         {
           type: FeeHandlerType.BASIC,
-          address: "0x8dA96a8C2b2d3e5ae7e668d0C94393aa8D5D3B94"
+          address: "0x8dA96a8C2b2d3e5ae7e668d0C94393aa8D5D3B94",
         },
         {
           type: FeeHandlerType.DYNAMIC,
-          address: "0x30d704A60037DfE54e7e4D242Ea0cBC6125aE497"
-        }
+          address: "0x30d704A60037DfE54e7e4D242Ea0cBC6125aE497",
+        },
       ],
       startBlock: BigInt(1),
       blockConfirmations: 2,
@@ -134,19 +144,22 @@ export const BRIDGE_CONFIG: RawConfig = {
         {
           type: ResourceType.NON_FUNGIBLE,
           address: "0xb61bd8740F60e0Bfc1b5C3fA2Bb9810e4AEf8938",
-          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000200"
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000200",
         },
         {
           type: ResourceType.PERMISSIONED_GENERIC,
           address: "0xF956Ba663bd563f585e00D5973E06b443E5C4D65",
-          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000100"
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000100",
         },
         {
           type: ResourceType.PERMISSIONLESS_GENERIC,
           address: "0x156fA85e1df5d69B0F138dcEbAa5a14ca640FaED",
-          resourceId: "0x0000000000000000000000000000000000000000000000000000000000000500"
-        }
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000500",
+        },
       ],
-    }
-  ]
-}
+    },
+  ],
+};
