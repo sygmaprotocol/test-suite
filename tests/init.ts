@@ -16,7 +16,7 @@ export const mochaHooks = {
 
       for (const domain of BRIDGE_CONFIG.domains) {
         if (domain.name == "substrate") {
-          await setupSubstrateChain(domain, mpcAddress);
+          await setupSubstrateChain(RPCS[domain.id.toString()], mpcAddress);
         } else {
           await setupEVMChain(
             domain as EthereumConfig,
