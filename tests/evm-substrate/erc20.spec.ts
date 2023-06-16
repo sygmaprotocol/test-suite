@@ -24,7 +24,7 @@ import { ADMIN_KEY } from "../../src/tools/evm/consts";
 import { getSigner } from "../../src/tools/evm/signer";
 import { BRIDGE_CONFIG, EVM_1_RPC, SUBSTRATE_RPC } from "../consts";
 
-describe("EVM-EVM ERC20", function () {
+describe("EVM-Substrate ERC20", function () {
   let assetTransfer: EVMAssetTransfer;
   let destinationAssetTransfer: SubstrateAssetTransfer;
 
