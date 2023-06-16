@@ -174,3 +174,4 @@ cython_debug/
 
 migrations/solidity/*
 migrations/substrate/*
+cfg/relayer/keyshares/*
