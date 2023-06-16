@@ -23,7 +23,7 @@ import { ADMIN_KEY } from "../../src/tools/evm/consts";
 import { getSigner } from "../../src/tools/evm/signer";
 import { BRIDGE_CONFIG, EVM_1_RPC, SUBSTRATE_RPC } from "../consts";
 
-describe("Substrate-EVM Fungible asset", function () {
+describe("Substrate-EVM fungible asset", function () {
   let destinationAssetTransfer: EVMAssetTransfer;
   let assetTransfer: SubstrateAssetTransfer;
 
@@ -69,6 +69,19 @@ describe("Substrate-EVM Fungible asset", function () {
         res.resourceId ==
         "0x0000000000000000000000000000000000000000000000000000000000000300"
     ) as SubstrateResource;
+    await new Promise((resolve) => {
+      api.tx.assets
+        .mint(fungibleAssetResource.assetId, account.address, "10000")
+        .signAndSend(account, {}, ({ status }) => {
+          if (status.isInBlock) {
+            console.log(
+              `Transaction included at blockHash ${status.asInBlock}`
+            );
+          } else if (status.isFinalized) {
+            resolve("");
+          }
+        });
+    });
 
     const destinationResources =
       destinationAssetTransfer.config.getDomainResources();
@@ -96,18 +109,15 @@ describe("Substrate-EVM Fungible asset", function () {
       to: domains[0],
       resource: fungibleAssetResource,
       amount: {
-        amount: "1000",
+        amount: "10",
       },
       sender: account.address,
       recipient: destinationAddress,
     };
     const fee = await assetTransfer.getFee(transfer);
     const transferTx = assetTransfer.buildTransferTransaction(transfer, fee);
-    const unsub = await transferTx.signAndSend(account, ({ status }) => {
-      if (status.isFinalized) {
-        unsub();
-      }
-    });
+    await transferTx.signAndSend(account);
+    await new Promise((resolve) => setTimeout(resolve, 150000));
 
     const balanceAfter = await destinationErc20LR18Contract.balanceOf(
       destinationAddress
