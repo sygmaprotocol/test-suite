@@ -183,7 +183,7 @@ export const BRIDGE_CONFIG: RawConfig = {
           resourceId:
             "0x0000000000000000000000000000000000000000000000000000000000000300",
           type: ResourceType.FUNGIBLE,
-          assetName: "",
+          assetName: "FungibleLR12",
           assetId: 2000,
           xcmMultiAssetId: {
             concrete: {
