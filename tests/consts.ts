@@ -13,6 +13,8 @@ export const RPCS: { [key: string]: string } = {
   "2": EVM_2_RPC,
   "3": SUBSTRATE_RPC,
 };
+export const SUBSTRATE_TRANSFER_RESERVER_ACCOUNT =
+  "5EMepC39b7E2zfM9g6CkPp8KCAxGTh7D4w4T2tFjmjpd4tPw";
 
 export const BRIDGE_CONFIG: RawConfig = {
   domains: [

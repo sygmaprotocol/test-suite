@@ -6,7 +6,8 @@ import { setupSubstrateChain } from "../src/tools/substrate/setup";
 
 import { BRIDGE_CONFIG, RPCS } from "./consts";
 
-export async function setMpcAddresses(): Promise<void> {
+async function setMpcAddresses(): Promise<void> {
+  /*
   const mpcAddress = await executeKeygen(
     BRIDGE_CONFIG.domains[0] as EthereumConfig,
     RPCS[BRIDGE_CONFIG.domains[0].id.toString()]
@@ -23,8 +24,13 @@ export async function setMpcAddresses(): Promise<void> {
       );
     }
   }
+  */
 }
 
-setMpcAddresses().finally(() => {
-  console.log("Successfully set mpc addresses.");
-});
+export const mochaHooks = {
+  beforeAll: [
+    async function (): Promise<void> {
+      await setMpcAddresses();
+    },
+  ],
+};
