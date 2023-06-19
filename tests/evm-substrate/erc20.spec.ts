@@ -31,10 +31,10 @@ describe("EVM-Substrate ERC20", function () {
   let wallet: ethers.Signer;
   let destinationApi: ApiPromise;
 
-  const destinationAddress = "5CDQJk6kxvBcjauhrogUc9B8vhbdXhRscp1tGEUmniryF1Vt";
+  const destinationAddress = "5EMepC39b7E2zfM9g6CkPp8KCAxGTh7D4w4T2tFjmjpd4tPw";
 
   let erc20LR18: EvmResource;
-  let destinationAssetLR18: SubstrateResource;
+  let destinationFungibleAsset12: SubstrateResource;
   let sourceErc20LR18Contract: ERC20PresetMinterPauser;
 
   before(async function () {
@@ -79,7 +79,7 @@ describe("EVM-Substrate ERC20", function () {
 
     const destinationResources =
       destinationAssetTransfer.config.getDomainResources();
-    destinationAssetLR18 = destinationResources.find(
+    destinationFungibleAsset12 = destinationResources.find(
       (res) =>
         res.resourceId ==
         "0x0000000000000000000000000000000000000000000000000000000000000300"
@@ -91,10 +91,10 @@ describe("EVM-Substrate ERC20", function () {
     await sourceErc20LR18Contract.mint(await wallet.getAddress(), "10000");
   });
 
-  it("Should successfully transfer erc20 lock/release token with basic fee", async function () {
+  it("Should successfully transfer erc20 lock/release token with basic fee to fungible asset with 12 decimals", async function () {
     const codedBalanceBefore = await destinationApi.query.assets.account<
       Option<AssetBalance>
-    >(destinationAssetLR18.assetId, destinationAddress);
+    >(destinationFungibleAsset12.assetId, destinationAddress);
     const balanceBefore = codedBalanceBefore.unwrapOrDefault();
 
     const domains = assetTransfer.config.getDomains();
@@ -103,10 +103,10 @@ describe("EVM-Substrate ERC20", function () {
       to: domains[2],
       resource: erc20LR18,
       amount: {
-        amount: "1000",
+        amount: "10000000",
       },
       sender: await wallet.getAddress(),
-      recipient: await wallet.getAddress(),
+      recipient: destinationAddress,
     };
     const fee = await assetTransfer.getFee(transfer);
     const approvals = await assetTransfer.buildApprovals(transfer, fee);
@@ -124,11 +124,9 @@ describe("EVM-Substrate ERC20", function () {
 
     const codedBalanceAfter = await destinationApi.query.assets.account<
       Option<AssetBalance>
-    >(destinationAssetLR18.assetId, destinationAddress);
+    >(destinationFungibleAsset12.assetId, destinationAddress);
     const balanceAfter = codedBalanceAfter.unwrapOrDefault();
 
-    expect(balanceAfter.balance.sub(balanceBefore.balance).toString()).eq(
-      "1000"
-    );
+    expect(balanceAfter.balance.sub(balanceBefore.balance).toString()).eq("10");
   });
 });
