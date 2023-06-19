@@ -73,11 +73,7 @@ describe("Substrate-EVM fungible asset", function () {
       api.tx.assets
         .mint(fungibleAssetResource.assetId, account.address, "10000")
         .signAndSend(account, {}, ({ status }) => {
-          if (status.isInBlock) {
-            console.log(
-              `Transaction included at blockHash ${status.asInBlock}`
-            );
-          } else if (status.isFinalized) {
+          if (status.isFinalized) {
             resolve("");
           }
         });
@@ -98,7 +94,7 @@ describe("Substrate-EVM fungible asset", function () {
     // await destinationErc20LR18Contract.mint(await wallet.getAddress(), "10000");
   });
 
-  it("Should successfully transfer fungible asset with basic fee", async function () {
+  it("Should successfully transfer 12 decimal fungible asset with basic fee to erc20 token with 18 decimals", async function () {
     const balanceBefore = await destinationErc20LR18Contract.balanceOf(
       destinationAddress
     );
