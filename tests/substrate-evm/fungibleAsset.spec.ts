@@ -118,6 +118,6 @@ describe("Substrate-EVM fungible asset", function () {
     const balanceAfter = await destinationErc20LR18Contract.balanceOf(
       destinationAddress
     );
-    expect(balanceAfter.sub(balanceBefore).toString()).eq("1000");
+    expect(balanceAfter.sub(balanceBefore).toString()).eq("10000000");
   });
 });
