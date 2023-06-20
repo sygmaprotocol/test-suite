@@ -110,7 +110,6 @@ describe("Substrate-EVM fungible asset", function () {
       recipient: destinationAddress,
     };
     const fee = await assetTransfer.getFee(transfer);
-    console.log(fee);
     const transferTx = assetTransfer.buildTransferTransaction(transfer, fee);
     await transferTx.signAndSend(account);
     await new Promise((resolve) => setTimeout(resolve, 150000));
@@ -119,6 +118,7 @@ describe("Substrate-EVM fungible asset", function () {
       destinationAddress
     );
     expect(balanceAfter.sub(balanceBefore).toString()).eq(
+      // 9 tokens in 18 decimals (1 was used for fee)
       "9000000000000000000"
     );
   });
