@@ -30,7 +30,7 @@ describe("Substrate-EVM fungible asset", function () {
   let account: KeyringPair;
   let api: ApiPromise;
 
-  const destinationAddress = "0x44f23DC213085158c2D16f402094ad89Ab22FFBA";
+  const destinationAddress = "0x4f48405B503C5557533bcb413ACDE36CF8A7e4E3";
 
   let fungibleAssetResource: SubstrateResource;
   let destinationErc20LR18Contract: ERC20PresetMinterPauser;
