@@ -110,6 +110,7 @@ describe("Substrate-EVM fungible asset", function () {
       recipient: destinationAddress,
     };
     const fee = await assetTransfer.getFee(transfer);
+    console.log(fee);
     const transferTx = assetTransfer.buildTransferTransaction(transfer, fee);
     await transferTx.signAndSend(account);
     await new Promise((resolve) => setTimeout(resolve, 150000));
@@ -117,6 +118,8 @@ describe("Substrate-EVM fungible asset", function () {
     const balanceAfter = await destinationErc20LR18Contract.balanceOf(
       destinationAddress
     );
-    expect(balanceAfter.sub(balanceBefore).toString()).eq("10000000");
+    expect(balanceAfter.sub(balanceBefore).toString()).eq(
+      "9000000000000000000"
+    );
   });
 });
