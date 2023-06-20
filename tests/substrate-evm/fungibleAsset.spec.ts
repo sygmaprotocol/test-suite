@@ -30,7 +30,7 @@ describe("Substrate-EVM fungible asset", function () {
   let account: KeyringPair;
   let api: ApiPromise;
 
-  const destinationAddress = "0x4f48405B503C5557533bcb413ACDE36CF8A7e4E3";
+  const destinationAddress = "0x44f23DC213085158c2D16f402094ad89Ab22FFBA";
 
   let fungibleAssetResource: SubstrateResource;
   let destinationErc20LR18Contract: ERC20PresetMinterPauser;
@@ -91,7 +91,6 @@ describe("Substrate-EVM fungible asset", function () {
     destinationErc20LR18Contract = new ERC20PresetMinterPauser__factory(
       adminWallet
     ).attach(destinationErc20LR18.address);
-    // await destinationErc20LR18Contract.mint(await wallet.getAddress(), "10000");
   });
 
   it("Should successfully transfer 12 decimal fungible asset with basic fee to erc20 token with 18 decimals", async function () {
