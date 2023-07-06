@@ -88,7 +88,7 @@ describe("EVM-Substrate ERC20", function () {
     sourceErc20LR18Contract = new ERC20PresetMinterPauser__factory(
       adminWallet
     ).attach(erc20LR18.address);
-    await sourceErc20LR18Contract.mint(await wallet.getAddress(), "10000");
+    await sourceErc20LR18Contract.mint(await wallet.getAddress(), "1000000000");
   });
 
   it("Should successfully transfer erc20 lock/release token with basic fee to fungible asset with 12 decimals", async function () {
