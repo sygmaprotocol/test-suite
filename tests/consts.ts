@@ -1,220 +1,165 @@
-import { SygmaBridgeSetupList } from "@buildwithsygma/sygma-sdk-core";
+import {
+  FeeHandlerType,
+  Network,
+  RawConfig,
+  ResourceType,
+} from "@buildwithsygma/sygma-sdk-core";
 
-export const BRIDGE_CONFIG: SygmaBridgeSetupList = [
-  {
-    domainId: "1",
-    networkId: 1337,
-    name: "Local EVM 1",
-    decimals: 18,
-    bridgeAddress: "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
-    erc20HandlerAddress: "0xD833215cBcc3f914bD1C9ece3EE7BF8B14f841bb",
-    erc721HandlerAddress: "0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7",
-    rpcUrl: "http://localhost:8545",
-    tokens: [
-      {
-        type: "erc20",
-        address: "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
-        name: "ERC20LRTST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000300",
-        feeSettings: {
-          type: "basic",
+export const EVM_1_RPC = "http://localhost:8545";
+export const EVM_2_RPC = "http://localhost:8547";
+export const RPCS: { [key: string]: string } = {
+  "1": "http://localhost:8545",
+  "2": "http://localhost:8547",
+};
+export const BRIDGE_CONFIG: RawConfig = {
+  domains: [
+    {
+      id: 1,
+      chainId: 1337,
+      name: "EVM 1",
+      nativeTokenName: "Ether",
+      nativeTokenSymbol: "ETH",
+      nativeTokenDecimals: BigInt(18),
+      bridge: "0x6CdE2Cd82a4F8B74693Ff5e194c19CA08c2d1c68",
+      type: Network.EVM,
+      handlers: [],
+      feeHandlers: [
+        {
+          type: FeeHandlerType.BASIC,
+          address: "0x8dA96a8C2b2d3e5ae7e668d0C94393aa8D5D3B94",
+        },
+        {
+          type: FeeHandlerType.DYNAMIC,
+          address: "0x30d704A60037DfE54e7e4D242Ea0cBC6125aE497",
+        },
+      ],
+      startBlock: BigInt(1),
+      blockConfirmations: 2,
+      feeRouter: "0x1CcB4231f2ff299E1E049De76F0a1D2B415C563A",
+      resources: [
+        {
+          type: ResourceType.FUNGIBLE,
           address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
+          symbol: "ERC20LR18",
+          decimals: 18,
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000300",
         },
-      },
-      {
-        type: "erc20",
-        address: "0xFC628dd79137395F3C9744e33b1c5DE554D94882",
-        name: "ERC20TST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000000",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        {
+          type: ResourceType.FUNGIBLE,
+          address: "0x37356a2B2EbF65e5Ea18BD93DeA6869769099739",
+          decimals: 18,
+          symbol: "ERC20DYN18",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000000",
         },
-      },
-      {
-        type: "erc20",
-        address: "0x86072CbFF48dA3C1F01824a6761A03F105BCC697",
-        name: "ERC20LRTest_14Dec",
-        decimals: 14,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000600",
-        feeSettings: {
-          type: "basic",
+        {
+          type: ResourceType.FUNGIBLE,
+          address: "0x318C18708CCA8f1f73C17997b29f9a073702c52c",
+          decimals: 14,
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000600",
+        },
+        {
+          type: ResourceType.FUNGIBLE,
+          address: "0x8f5b7716a0A5f94Ea10590F9070442f285a31116",
+          decimals: 20,
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000700",
+        },
+        {
+          type: ResourceType.NON_FUNGIBLE,
+          address: "0xb61bd8740F60e0Bfc1b5C3fA2Bb9810e4AEf8938",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000200",
+        },
+        {
+          type: ResourceType.PERMISSIONED_GENERIC,
+          address: "0xF956Ba663bd563f585e00D5973E06b443E5C4D65",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000100",
+        },
+        {
+          type: ResourceType.PERMISSIONLESS_GENERIC,
+          address: "0x156fA85e1df5d69B0F138dcEbAa5a14ca640FaED",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000500",
+        },
+      ],
+    },
+    {
+      id: 2,
+      chainId: 1338,
+      name: "EVM 2",
+      nativeTokenName: "Ether",
+      nativeTokenSymbol: "ETH",
+      nativeTokenDecimals: BigInt(18),
+      bridge: "0x6CdE2Cd82a4F8B74693Ff5e194c19CA08c2d1c68",
+      handlers: [],
+      feeHandlers: [
+        {
+          type: FeeHandlerType.BASIC,
+          address: "0x8dA96a8C2b2d3e5ae7e668d0C94393aa8D5D3B94",
+        },
+        {
+          type: FeeHandlerType.DYNAMIC,
+          address: "0x30d704A60037DfE54e7e4D242Ea0cBC6125aE497",
+        },
+      ],
+      startBlock: BigInt(1),
+      blockConfirmations: 2,
+      feeRouter: "0x59d3631c86BbE35EF041872d502F218A39FBa150",
+      type: Network.EVM,
+      resources: [
+        {
+          type: ResourceType.FUNGIBLE,
           address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
+          symbol: "ERC20LR18",
+          decimals: 18,
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000300",
         },
-      },
-      {
-        type: "erc20",
-        address: "0xaf5C4C6C7920B4883bC6252e9d9B8fE27187Cf68",
-        name: "ERC20Test_14Dec",
-        decimals: 14,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000700",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        {
+          type: ResourceType.FUNGIBLE,
+          address: "0x37356a2B2EbF65e5Ea18BD93DeA6869769099739",
+          decimals: 18,
+          symbol: "ERC20DYN18",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000000",
         },
-      },
-      {
-        type: "erc20",
-        address: "0xFcCeD5E997E7fb1D0594518D3eD57245bB8ed17E",
-        name: "ERC20LRTest_20Dec",
-        decimals: 20,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000800",
-        feeSettings: {
-          type: "basic",
-          address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
+        {
+          type: ResourceType.FUNGIBLE,
+          address: "0x318C18708CCA8f1f73C17997b29f9a073702c52c",
+          decimals: 14,
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000700",
         },
-      },
-      {
-        type: "erc20",
-        address: "0xCeeFD27e0542aFA926B87d23936c79c276A48277",
-        name: "ERC20Test_20Dec",
-        decimals: 20,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000900",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        {
+          type: ResourceType.FUNGIBLE,
+          address: "0x8f5b7716a0A5f94Ea10590F9070442f285a31116",
+          decimals: 20,
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000600",
         },
-      },
-      {
-        type: "erc721",
-        address: "0x8914a9E5C5E234fDC3Ce9dc155ec19F43947ab59",
-        name: "ERC20TST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000200",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        {
+          type: ResourceType.NON_FUNGIBLE,
+          address: "0xb61bd8740F60e0Bfc1b5C3fA2Bb9810e4AEf8938",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000200",
         },
-      },
-    ],
-  },
-  {
-    domainId: "2",
-    networkId: 1338,
-    name: "Local EVM 2",
-    decimals: 18,
-    bridgeAddress: "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
-    erc20HandlerAddress: "0xD833215cBcc3f914bD1C9ece3EE7BF8B14f841bb",
-    erc721HandlerAddress: "0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7",
-    rpcUrl: "http://localhost:8547",
-    tokens: [
-      {
-        type: "erc20",
-        address: "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
-        name: "ERC20LRTST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000300",
-        feeSettings: {
-          type: "basic",
-          address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
+        {
+          type: ResourceType.PERMISSIONED_GENERIC,
+          address: "0xF956Ba663bd563f585e00D5973E06b443E5C4D65",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000100",
         },
-      },
-      {
-        type: "erc20",
-        address: "0xFC628dd79137395F3C9744e33b1c5DE554D94882",
-        name: "ERC20TST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000000",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        {
+          type: ResourceType.PERMISSIONLESS_GENERIC,
+          address: "0x156fA85e1df5d69B0F138dcEbAa5a14ca640FaED",
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000500",
         },
-      },
-      {
-        type: "erc20",
-        address: "0x86072CbFF48dA3C1F01824a6761A03F105BCC697",
-        name: "ERC20LRTest_14Dec",
-        decimals: 14,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000600",
-        feeSettings: {
-          type: "basic",
-          address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
-        },
-      },
-      {
-        type: "erc20",
-        address: "0xaf5C4C6C7920B4883bC6252e9d9B8fE27187Cf68",
-        name: "ERC20Test_14Dec",
-        decimals: 14,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000700",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
-        },
-      },
-      {
-        type: "erc20",
-        address: "0xFcCeD5E997E7fb1D0594518D3eD57245bB8ed17E",
-        name: "ERC20LRTest_20Dec",
-        decimals: 20,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000800",
-        feeSettings: {
-          type: "basic",
-          address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
-        },
-      },
-      {
-        type: "erc20",
-        address: "0xCeeFD27e0542aFA926B87d23936c79c276A48277",
-        name: "ERC20Test_20Dec",
-        decimals: 20,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000900",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
-        },
-      },
-      {
-        type: "erc721",
-        address: "0x8914a9E5C5E234fDC3Ce9dc155ec19F43947ab59",
-        name: "ERC20TST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000200",
-        feeSettings: {
-          type: "feeOracle",
-          address: "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
-        },
-      },
-    ],
-  },
-  {
-    domainId: "3",
-    networkId: 1338,
-    name: "substrate",
-    decimals: 18,
-    bridgeAddress: "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
-    erc20HandlerAddress: "0x1ED1d77911944622FCcDDEad8A731fd77E94173e",
-    erc721HandlerAddress: "0x481f97f9C82a971B3844a422936a4d3c4082bF84",
-    rpcUrl: "ws://localhost:9944",
-    tokens: [
-      {
-        type: "erc20",
-        address: "0x1CcB4231f2ff299E1E049De76F0a1D2B415C563A",
-        name: "ERC20LRTST",
-        decimals: 18,
-        resourceId:
-          "0x0000000000000000000000000000000000000000000000000000000000000300",
-        feeSettings: {
-          type: "basic",
-          address: "0x78E5b9cEC9aEA29071f070C8cC561F692B3511A6",
-        },
-      },
-    ],
-  },
-];
+      ],
+    },
+  ],
+};

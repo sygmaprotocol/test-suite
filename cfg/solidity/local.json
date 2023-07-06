@@ -49,25 +49,9 @@
         "decimals": 14
       },
       {
-        "name": "ERC20Test_14Dec",
-        "symbol": "ERC20TST_14D",
-        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000700",
-        "feeType": "oracle",
-        "strategy": "mb",
-        "decimals": 14
-      },
-      {
         "name": "ERC20LRTest_20Dec",
         "symbol": "ERC20LRTST_20D",
-        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000800",
-        "feeType": "basic",
-        "strategy": "lr",
-        "decimals": 20
-      },
-      {
-        "name": "ERC20Test_20Dec",
-        "symbol": "ERC20TST_20D",
-        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000900",
+        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000700",
         "feeType": "oracle",
         "strategy": "mb",
         "decimals": 20
@@ -131,31 +115,15 @@
       {
         "name": "ERC20LRTest_14Dec",
         "symbol": "ERC20LRTST_14D",
-        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000600",
-        "feeType": "basic",
-        "strategy": "lr",
-        "decimals": 14
-      },
-      {
-        "name": "ERC20Test_14Dec",
-        "symbol": "ERC20TST_14D",
         "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000700",
-        "feeType": "oracle",
-        "strategy": "mb",
-        "decimals": 14
-      },
-      {
-        "name": "ERC20LRTest_20Dec",
-        "symbol": "ERC20LRTST_20D",
-        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000800",
         "feeType": "basic",
         "strategy": "lr",
-        "decimals": 20
+        "decimals": 14
       },
       {
         "name": "ERC20Test_20Dec",
         "symbol": "ERC20TST_20D",
-        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000900",
+        "resourceID": "0x0000000000000000000000000000000000000000000000000000000000000600",
         "feeType": "oracle",
         "strategy": "mb",
         "decimals": 20

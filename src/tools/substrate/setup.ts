@@ -1,14 +1,13 @@
-import { SygmaBridgeSetup } from "@buildwithsygma/sygma-sdk-core";
 import { ApiPromise, Keyring, WsProvider } from "@polkadot/api";
 import { cryptoWaitReady } from "@polkadot/util-crypto";
 
 import { setMpcAddress } from "./keygen";
 
 export async function setupSubstrateChain(
-  domain: SygmaBridgeSetup,
+  rpcUrl: string,
   mpcAddress: string
 ): Promise<void> {
-  const sygmaPalletProvider = new WsProvider(domain.rpcUrl);
+  const sygmaPalletProvider = new WsProvider(rpcUrl);
   const api = await ApiPromise.create({
     provider: sygmaPalletProvider,
   });
