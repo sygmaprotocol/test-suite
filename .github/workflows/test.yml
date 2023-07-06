@@ -6,7 +6,6 @@ on:
   schedule:
     # nightly build at 8PM
     - cron:  '0 20 * * *'
-  push:
 
 jobs:
   test:
