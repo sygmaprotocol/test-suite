@@ -29,3 +29,7 @@ jobs:
         run: make migrate
       - name: Run tests
         run: yarn run test
+      - name: Print logs
+        if: always()
+        run: |
+          docker logs relayer1
