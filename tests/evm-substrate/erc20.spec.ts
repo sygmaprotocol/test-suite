@@ -15,6 +15,7 @@ import {
 } from "@buildwithsygma/sygma-sdk-core";
 import { NonceManager } from "@ethersproject/experimental";
 import { ApiPromise, WsProvider } from "@polkadot/api";
+import { Keyring } from "@polkadot/keyring";
 import { Option } from "@polkadot/types";
 import type { AssetBalance } from "@polkadot/types/interfaces";
 import { expect } from "chai";
@@ -22,7 +23,12 @@ import { ethers, Wallet } from "ethers";
 
 import { ADMIN_KEY } from "../../src/tools/evm/consts";
 import { getSigner } from "../../src/tools/evm/signer";
-import { BRIDGE_CONFIG, EVM_1_RPC, SUBSTRATE_RPC } from "../consts";
+import {
+  BRIDGE_CONFIG,
+  EVM_1_RPC,
+  SUBSTRATE_RPC,
+  SUBSTRATE_TRANSFER_RESERVE_ACCOUNT,
+} from "../consts";
 
 describe("EVM-Substrate ERC20", function () {
   let assetTransfer: EVMAssetTransfer;
@@ -89,6 +95,22 @@ describe("EVM-Substrate ERC20", function () {
       adminWallet
     ).attach(erc20LR18.address);
     await sourceErc20LR18Contract.mint(await wallet.getAddress(), "1000000000");
+
+    const keyring = new Keyring({ type: "sr25519" });
+    const account = keyring.addFromUri("//Alice");
+    await new Promise((resolve) => {
+      destinationApi.tx.assets
+        .mint(
+          destinationFungibleAsset12.assetId,
+          SUBSTRATE_TRANSFER_RESERVE_ACCOUNT,
+          "1000000000"
+        )
+        .signAndSend(account, {}, ({ status }) => {
+          if (status.isFinalized) {
+            resolve("");
+          }
+        });
+    });
   });
 
   it("Should successfully transfer erc20 lock/release token with basic fee to fungible asset with 12 decimals", async function () {
