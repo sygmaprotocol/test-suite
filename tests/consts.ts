@@ -7,10 +7,15 @@ import {
 
 export const EVM_1_RPC = "http://localhost:8545";
 export const EVM_2_RPC = "http://localhost:8547";
+export const SUBSTRATE_RPC = "ws://localhost:9944";
 export const RPCS: { [key: string]: string } = {
-  "1": "http://localhost:8545",
-  "2": "http://localhost:8547",
+  "1": EVM_1_RPC,
+  "2": EVM_2_RPC,
+  "3": SUBSTRATE_RPC,
 };
+export const SUBSTRATE_TRANSFER_RESERVE_ACCOUNT =
+  "5EMepC39b7E2zfM9g6CkPp8KCAxGTh7D4w4T2tFjmjpd4tPw";
+
 export const BRIDGE_CONFIG: RawConfig = {
   domains: [
     {
@@ -158,6 +163,50 @@ export const BRIDGE_CONFIG: RawConfig = {
           address: "0x156fA85e1df5d69B0F138dcEbAa5a14ca640FaED",
           resourceId:
             "0x0000000000000000000000000000000000000000000000000000000000000500",
+        },
+      ],
+    },
+    {
+      id: 3,
+      chainId: 5,
+      name: "Substrate",
+      type: Network.SUBSTRATE,
+      nativeTokenSymbol: "pha",
+      nativeTokenName: "pha",
+      nativeTokenDecimals: BigInt(18),
+      blockConfirmations: 1,
+      bridge: "",
+      handlers: [],
+      startBlock: BigInt(5),
+      resources: [
+        {
+          resourceId:
+            "0x0000000000000000000000000000000000000000000000000000000000000300",
+          type: ResourceType.FUNGIBLE,
+          assetName: "FungibleLR12",
+          assetId: 2000,
+          xcmMultiAssetId: {
+            concrete: {
+              parents: 1,
+              interior: {
+                x3: [
+                  { parachain: 2004 },
+                  {
+                    generalKey: [
+                      5,
+                      "0x7379676d61000000000000000000000000000000000000000000000000000000",
+                    ],
+                  },
+                  {
+                    generalKey: [
+                      4,
+                      "0x7573646300000000000000000000000000000000000000000000000000000000",
+                    ],
+                  },
+                ],
+              },
+            },
+          },
         },
       ],
     },
